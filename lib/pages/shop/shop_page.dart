@@ -36,11 +36,11 @@ class _ShopPageScreenState extends State<ShopPageScreen> {
   List<ProductDetails> _products = <ProductDetails>[];
 
   final _productIdList = [
-    '100_coins_letters_puzzles',
-    '500_coins_letters_puzzles',
-    '1000_coins_letters_puzzles',
-    '2000_coins_letters_puzzles',
-    '5000_coins_letters_puzzles',
+    '100_coins_number_puzzles',
+    '500_coins_number_puzzles',
+    '1000_coins_number_puzzles',
+    '2000_coins_number_puzzles',
+    '5000_coins_number_puzzles',
   ];
 
   String? _queryProductError = "";
