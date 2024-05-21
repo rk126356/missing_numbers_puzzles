@@ -168,7 +168,7 @@ class _PlayQuizScreenState extends State<PlayQuizScreen> {
                             for (int j = 0; j < 5; j++)
                               if (i * 5 + j < alphabet.length)
                                 Padding(
-                                  padding: const EdgeInsets.all(5.0),
+                                  padding: const EdgeInsets.all(1.0),
                                   child: buildLetterButton(alphabet[i * 5 + j]),
                                 ),
                           ],
@@ -360,13 +360,16 @@ class _PlayQuizScreenState extends State<PlayQuizScreen> {
   void handleShowAnswer() {
     final coinProvider = Provider.of<CoinProvider>(context, listen: false);
     final music = Provider.of<AudioProvider>(context, listen: false);
-    if (coinProvider.coins >= 30) {
+    if (coinProvider.coins >= 50 || widget.question[0].isAnswerShowed) {
       if (music.isSoundTurnedOn) {
         music.ans();
       }
       if (!widget.question[0].isAnswerShowed) {
         coinProvider.subtractCoins(50);
       }
+      setState(() {
+        widget.question[0].isAnswerShowed = true;
+      });
       showDialog(
         context: context,
         builder: (BuildContext context) {
@@ -380,9 +383,6 @@ class _PlayQuizScreenState extends State<PlayQuizScreen> {
           );
         },
       );
-      setState(() {
-        widget.question[0].isAnswerShowed = true;
-      });
     } else {
       if (music.isSoundTurnedOn) {
         music.wrong();
